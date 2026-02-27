@@ -1,23 +1,9 @@
-import streamlit as st
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-def get_openai_key():
-    # First try Streamlit Cloud secrets
-    try:
-        return st.secrets["OPENAI_API_KEY"]
-    except Exception:
-        # Fallback to local .env
-        load_dotenv()
-        return os.getenv("OPENAI_API_KEY")
-
-api_key = get_openai_key()
-
-if not api_key:
-    raise ValueError("OpenAI API key not found. Add it to Streamlit secrets or .env file.")
-
-client = OpenAI(api_key=api_key)
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 ANSWER_FACTOR = {
     "Yes": 1.0,
