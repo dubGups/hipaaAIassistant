@@ -21,130 +21,143 @@ def risk_badge(level: str) -> str:
     return "badge-low"
 
 
-st.set_page_config(page_title="Complisstant", layout="wide")
+st.set_page_config(page_title="HIPAA Self Risk Assessment", layout="wide")
 
 # -----------------------------
-# ELECTRIC BLUE DARK STYLING
+# ELECTRIC DARK ENTERPRISE STYLE
 # -----------------------------
 st.markdown("""
 <style>
-.block-container { padding-top: 1.5rem; max-width: 1200px; }
 
-/* Header */
-.ca-header {
-  border-radius: 20px;
-  padding: 20px 24px;
-  background: linear-gradient(90deg, #0B1220 0%, #0f1b36 40%, #001F3F 100%);
-  border: 1px solid rgba(0,191,255,0.25);
-  box-shadow: 0 0 40px rgba(0,191,255,0.08);
+/* Layout */
+.block-container {
+    padding-top: 1.2rem;
+    max-width: 1200px;
 }
-.ca-header h1 {
-  margin: 0;
-  font-size: 30px;
-  color: #00BFFF;
-  letter-spacing: 1px;
+
+/* MAIN HEADER */
+.main-header {
+    border-radius: 24px;
+    padding: 28px 32px;
+    background: linear-gradient(120deg, #0B1220 0%, #001F3F 50%, #003366 100%);
+    border: 1px solid rgba(0,191,255,0.35);
+    box-shadow: 0 0 60px rgba(0,191,255,0.15);
+    margin-bottom: 20px;
 }
-.ca-header p {
-  margin: 6px 0 0 0;
-  color: #9CA3AF;
+
+.main-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #00BFFF;
+    letter-spacing: 1.5px;
+}
+
+.main-subtitle {
+    margin-top: 8px;
+    font-size: 15px;
+    color: #9CA3AF;
 }
 
 /* Section Titles */
 .section-title {
-  margin-top: 22px;
-  font-weight: 700;
-  font-size: 15px;
-  color: #00BFFF;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    margin-top: 24px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #00BFFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* KPI Cards */
+/* KPI CARDS */
 .kpi-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 12px;
 }
 
 .card {
-  background: #111827;
-  border-radius: 18px;
-  padding: 16px;
-  border: 1px solid rgba(0,191,255,0.15);
-  box-shadow: 0 0 25px rgba(0,191,255,0.05);
+    background: #111827;
+    border-radius: 18px;
+    padding: 18px;
+    border: 1px solid rgba(0,191,255,0.2);
+    box-shadow: 0 0 25px rgba(0,191,255,0.07);
 }
 
 .card .label {
-  font-size: 12px;
-  color: #9CA3AF;
+    font-size: 12px;
+    color: #9CA3AF;
 }
 
 .card .value {
-  font-size: 24px;
-  font-weight: 800;
-  margin-top: 4px;
-  color: #00BFFF;
+    font-size: 26px;
+    font-weight: 800;
+    margin-top: 6px;
+    color: #00BFFF;
 }
 
 .card .sub {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #6B7280;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6B7280;
 }
 
 /* Risk Badges */
 .badge {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .badge-high {
-  background: rgba(220,38,38,0.15);
-  color: #EF4444;
-  border: 1px solid rgba(220,38,38,0.35);
+    background: rgba(220,38,38,0.15);
+    color: #EF4444;
+    border: 1px solid rgba(220,38,38,0.35);
 }
 
 .badge-med {
-  background: rgba(245,158,11,0.15);
-  color: #F59E0B;
-  border: 1px solid rgba(245,158,11,0.35);
+    background: rgba(245,158,11,0.15);
+    color: #F59E0B;
+    border: 1px solid rgba(245,158,11,0.35);
 }
 
 .badge-low {
-  background: rgba(34,197,94,0.15);
-  color: #22C55E;
-  border: 1px solid rgba(34,197,94,0.35);
+    background: rgba(34,197,94,0.15);
+    color: #22C55E;
+    border: 1px solid rgba(34,197,94,0.35);
 }
 
 /* Buttons */
 .stButton>button {
-  background: #00BFFF;
-  color: black;
-  font-weight: 700;
-  border-radius: 14px;
-  border: none;
+    background: #00BFFF;
+    color: black;
+    font-weight: 800;
+    border-radius: 14px;
+    border: none;
+    padding: 0.6rem 1.2rem;
 }
 .stButton>button:hover {
-  background: #1ecfff;
+    background: #1ecfff;
 }
 
-/* Progress bar glow */
+/* Progress bar */
 .stProgress > div > div > div > div {
-  background-color: #00BFFF;
+    background-color: #00BFFF;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Header
+# HEADER
 # -----------------------------
 st.markdown("""
-<div class="ca-header">
-  <h1>Complisstant</h1>
-  <p>AI-powered HIPAA Security Risk Assessment platform for healthcare organizations.</p>
+<div class="main-header">
+    <div class="main-title">HIPAA Self Risk Assessment</div>
+    <div class="main-subtitle">
+        AI-powered HIPAA Security Rule assessment platform for healthcare organizations.
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -196,7 +209,7 @@ if st.button("Generate Dashboard + Report"):
         <div class="card">
             <div class="label">Compliance Score</div>
             <div class="value">{overall_score}%</div>
-            <div class="sub">Weighted across controls</div>
+            <div class="sub">Weighted across safeguards</div>
         </div>
         <div class="card">
             <div class="label">Overall Risk</div>
@@ -243,6 +256,6 @@ if st.button("Generate Dashboard + Report"):
     st.download_button(
         "Download PDF Report",
         pdf_bytes,
-        file_name=f"Complisstant_HIPAA_SRA_{safe_filename(org_name)}.pdf",
+        file_name=f"HIPAA_Self_Risk_Assessment_{safe_filename(org_name)}.pdf",
         mime="application/pdf"
     )
